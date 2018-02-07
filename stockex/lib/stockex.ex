@@ -1,6 +1,8 @@
 defmodule Stockex do
   @base_url Utils.return_base()
   @headers Utils.return_headers()
+  #import Utils
+  #import Info
 
   def getPrices(ticker) when is_binary(ticker) do
 
@@ -9,10 +11,6 @@ defmodule Stockex do
     Poison.decode! info
   end
 
-  def eps(ticker) do 
-    %HTTPoison.Response{body: resp} = HTTPoison.get! "https://api.intrinio.com/" <> "data_point?identifier=#{ticker}&item=basiceps", @headers
-    resp |> Poison.decode! |> Map.get("value")
-  end
 
 
 
